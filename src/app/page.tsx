@@ -8,7 +8,7 @@ function page() {
     <div>
       <Home/>
       <AboutUsSection/>
-      <TeamSection/>
+      {/* <TeamSection/> */}
     </div>
   )
 }
