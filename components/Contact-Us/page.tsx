@@ -7,12 +7,12 @@ export default function AboutUsPage() {
     {
       name: `Nupur Ma'am`,
       role: 'Director',
-      photo: '/images/director1.jpg',
+      photo: '/director.jpg',
     },
     {
       name: 'Vinay Sir',
       role: 'Founder & CEO',
-      photo: '/images/director2.jpg',
+      photo: '/director.jpg',
     },
   ]
 
