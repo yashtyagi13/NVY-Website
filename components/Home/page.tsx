@@ -18,46 +18,46 @@ const NAV_ITEMS = [
 ]
 
 /* reusable circular progress SVG */
-function Ring({ pct }: { pct: number }) {
-  const r = 70
-  const c = 2 * Math.PI * r
-  const offset = c - (pct / 100) * c
+// function Ring({ pct }: { pct: number }) {
+//   const r = 70
+//   const c = 2 * Math.PI * r
+//   const offset = c - (pct / 100) * c
 
-  return (
-    <svg viewBox="0 0 160 160" className="w-32 h-32 sm:w-36 sm:h-36">
-      <circle
-        cx="80"
-        cy="80"
-        r={r}
-        stroke="#ffffff55"
-        strokeWidth="14"
-        fill="none"
-      />
-      <circle
-        cx="80"
-        cy="80"
-        r={r}
-        stroke="#fff"
-        strokeWidth="14"
-        fill="none"
-        strokeDasharray={c}
-        strokeDashoffset={offset}
-        strokeLinecap="round"
-        transform="rotate(-90 80 80)"
-      />
-      <text
-        x="80"
-        y="90"
-        fontSize="28"
-        textAnchor="middle"
-        fontWeight={600}
-        fill="#fff"
-      >
-        {pct}%
-      </text>
-    </svg>
-  )
-}
+//   return (
+//     <svg viewBox="0 0 160 160" className="w-32 h-32 sm:w-36 sm:h-36">
+//       <circle
+//         cx="80"
+//         cy="80"
+//         r={r}
+//         stroke="#ffffff55"
+//         strokeWidth="14"
+//         fill="none"
+//       />
+//       <circle
+//         cx="80"
+//         cy="80"
+//         r={r}
+//         stroke="#fff"
+//         strokeWidth="14"
+//         fill="none"
+//         strokeDasharray={c}
+//         strokeDashoffset={offset}
+//         strokeLinecap="round"
+//         transform="rotate(-90 80 80)"
+//       />
+//       <text
+//         x="80"
+//         y="90"
+//         fontSize="28"
+//         textAnchor="middle"
+//         fontWeight={600}
+//         fill="#fff"
+//       >
+//         {pct}%
+//       </text>
+//     </svg>
+//   )
+// }
 
 export default function HomePage() {
   const [open, setOpen] = useState(false)
