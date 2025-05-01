@@ -14,23 +14,25 @@ export default function TeamSection() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isMounted, setIsMounted] = useState(false)
   const [scrollPad, setScrollPad] = useState('1rem')
-  const [intervalId, setIntervalId] = useState<number | null>(null)
 
-  // Only run browser logic after mount
   useEffect(() => {
     setIsMounted(true)
 
-    // set correct padding based on actual window width
+    // Remove injected Grammarly attributes:
+    document.body.removeAttribute('data-new-gr-c-s-check-loaded')
+    document.body.removeAttribute('data-gr-ext-installed')
+
+    // Responsive scroll-padding
     const updatePad = () => {
       const w = window.innerWidth
-      if (w >= 1024) setScrollPad('5rem')   // lg:px-20
-      else if (w >= 640) setScrollPad('2rem') // sm:px-8
-      else setScrollPad('1rem')             // px-4
+      if (w >= 1024) setScrollPad('5rem')
+      else if (w >= 640) setScrollPad('2rem')
+      else setScrollPad('1rem')
     }
     updatePad()
     window.addEventListener('resize', updatePad)
 
-    // Auto scroll setup
+    // Auto-scroll every 3s
     const scrollNext = () => {
       const el = containerRef.current!
       const cardWidth = el.clientWidth / 4
@@ -41,7 +43,6 @@ export default function TeamSection() {
       }
     }
     const id = window.setInterval(scrollNext, 3000)
-    setIntervalId(id)
 
     return () => {
       window.clearInterval(id)
@@ -54,6 +55,7 @@ export default function TeamSection() {
     const cardWidth = el.clientWidth / 4
     el.scrollBy({ left: -cardWidth, behavior: 'smooth' })
   }
+
   const handleNext = () => {
     const el = containerRef.current!
     const cardWidth = el.clientWidth / 4
@@ -72,7 +74,6 @@ export default function TeamSection() {
       </p>
       <div className="mt-2 w-24 h-0.5 bg-black mx-auto" />
 
-      {/* only render the slider after hydration */}
       {isMounted && (
         <div className="relative mt-8">
           <div
@@ -92,7 +93,12 @@ export default function TeamSection() {
                 "
               >
                 <div className="relative h-64">
-                  <Image src={photo} alt={name} fill className="object-cover" />
+                  <Image
+                    src={photo}
+                    alt={name}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="bg-orange-500 px-4 py-2 text-white">
                   <p className="font-semibold">{name}</p>
