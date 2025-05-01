@@ -34,7 +34,7 @@ export default function AboutUsPage() {
       <section className="flex flex-col lg:flex-row items-center bg-purple-600 text-white rounded-xl overflow-hidden mx-4 sm:mx-12 lg:mx-20 mb-16">
         <div className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-8">
           <Image
-            src="/images/mission-vision.jpg"
+            src="/mission-vision.jpg"
             alt="Mission & Vision"
             width={640}
             height={400}
