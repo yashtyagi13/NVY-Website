@@ -52,18 +52,18 @@ export default function PortfolioPage() {
 
       {/* Title & description */}
       <div className="relative z-10 text-center mb-12">
-        <h1 className="text-4xl sm:text-5xl font-bold text-white">Portfolio</h1>
+      <h1 className="text-6xl sm:text-7xl font-bold text-white">Portfolio</h1>
         <div className="
-    mt-6
-    mx-auto max-w-3xl
-    bg-gradient-to-r from-pink-800 to-pink-300
-    bg-opacity-80
-    backdrop-blur-md
-    rounded-lg
-    p-6
+     mt-6
+  mx-auto max-w-3xl
+  bg-gradient-to-r from-purple-800 to-purple-400
+  bg-opacity-80
+  backdrop-blur-md
+  rounded-lg
+  p-6
   ">
   <p className="text-white text-lg">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+ tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
   </p>
 </div>
 

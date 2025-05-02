@@ -3,19 +3,7 @@ import Image from 'next/image'
 import Link  from 'next/link'
 
 export default function AboutUsPage() {
-  const directors = [
-    {
-      name: `Nupur Ma'am`,
-      role: 'Director',
-      photo: '/director.jpg',
-    },
-    {
-      name: 'Vinay Sir',
-      role: 'Founder & CEO',
-      photo: '/director.jpg',
-    },
-  ]
-
+ 
   return (
     <main className="bg-gray-50 text-gray-900">
       {/* HEADER */}
@@ -64,44 +52,7 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      {/* OUR DIRECTORS */}
-      <section className="px-6 sm:px-12 lg:px-20 pb-12 text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8">Our Directors</h2>
-
-        <div className="flex flex-col sm:flex-row justify-center gap-8">
-          {directors.map(({ name, role, photo }) => (
-            <div key={name} className="max-w-xs mx-auto space-y-4">
-              <div className="relative rounded-lg border-4 border-purple-600 overflow-hidden">
-                <Image
-                  src={photo}
-                  alt={name}
-                  width={300}
-                  height={300}
-                  className="object-cover w-full h-full"
-                />
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-purple-700 to-transparent p-3">
-                  <p className="text-lg font-semibold text-orange-400">
-                    {name}
-                  </p>
-                  <p className="text-sm text-white">{role}</p>
-                </div>
-              </div>
-              <p className="text-sm sm:text-base">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-                ipsum suspendisse ultrices gravida. Risus commodo viverra.
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <Link
-          href="/about-us"
-          className="mt-8 inline-block px-6 py-2 border-2 border-orange-400 text-orange-400 font-semibold rounded-full hover:bg-orange-400 hover:text-white transition-colors text-sm sm:text-base"
-        >
-          Read More
-        </Link>
-      </section>
+     
     </main>
   )
 }

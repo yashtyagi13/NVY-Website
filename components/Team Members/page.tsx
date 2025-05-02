@@ -14,7 +14,7 @@ const team: Member[] = [
   {
     name: 'Swadha Mishra',
     role: 'Manager',
-    photo: '/mission-vision.jpg',
+    photo: '/home-bg.jpg',
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
   },
@@ -114,7 +114,7 @@ export default function TeamMembersSection() {
         </p>
       </div>
 
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative max-w-8xl mx-auto">
         <div
           ref={containerRef}
           className="flex overflow-hidden scroll-snap-x snap-mandatory"
@@ -131,7 +131,7 @@ export default function TeamMembersSection() {
       src={m.photo}
       alt={m.name}
       fill
-      className="object-cover"
+      className="object-fit "
     />
   </div>
 
