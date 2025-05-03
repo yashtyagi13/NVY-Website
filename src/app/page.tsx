@@ -1,8 +1,9 @@
 import React from 'react'
 import Home from '../../components/Home/page'
-import AboutUsSection from '../../components/Contact-Us/page'
+import AboutUsSection from '../../components/About-Us/page'
 import PortfolioPage from '../../components/Portfolio/page'
 import TeamSection from '../../components/Team Members/page'
+import ContactPage from './contact/page'
 
 function page() {
   return (
@@ -11,7 +12,9 @@ function page() {
       <AboutUsSection/>
       <TeamSection/>
       <PortfolioPage/>
-    </div>
+       <ContactPage/>
+
+          </div>
   )
 }
 
