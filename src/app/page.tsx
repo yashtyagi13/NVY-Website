@@ -13,8 +13,7 @@ function page() {
       <TeamSection/>
       <PortfolioPage/>
        <ContactPage/>
-
-          </div>
+      </div>
   )
 }
 
