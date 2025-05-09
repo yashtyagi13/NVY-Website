@@ -5,43 +5,52 @@ const HUBSPOT_PORTAL_ID = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID!
 const HUBSPOT_FORM_ID   = process.env.NEXT_PUBLIC_HUBSPOT_FORM_ID!
 
 export async function POST(req: Request) {
-  const { firstname, lastname, email, phone, services } = await req.json()
+  try {
+    // 1) pull your form data
+    const { firstname, lastname, email, phone, services } = await req.json()
 
-  // Build the payload exactly matching your HubSpot form fields:
-  const hubspotBody = {
-    fields: [
-      { name: 'firstname', value: firstname },
-      { name: 'lastname',  value: lastname  },
-      { name: 'email',     value: email     },
-      { name: 'phone',     value: phone     },
-      // map your “Which Services…” into the HubSpot property named `address`
-      { name: 'address',   value: services  },
-    ],
-    context: {
-      pageUri:  req.headers.get('referer') || '',
-      pageName: 'Custom Contact Form',
-    },
-  }
-
-  // POST to HubSpot
-  const hsRes = await fetch(
-    `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
-    {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(hubspotBody),
+    // 2) build the HubSpot payload, mapping your `services` → HS internal name `address`
+    const hubspotBody = {
+      fields: [
+        { name: 'firstname', value: firstname },
+        { name: 'lastname',  value: lastname  },
+        { name: 'email',     value: email     },
+        { name: 'phone',     value: phone     },
+        { name: 'address',   value: services  }, // ← use your HS internal name here!
+      ],
+      context: {
+        pageUri:  req.headers.get('referer') || '',
+        pageName: 'Custom Contact Form'
+      }
     }
-  )
 
-  // If HubSpot rejects it, bubble up the error
-  if (!hsRes.ok) {
-    const text = await hsRes.text()
-    console.error('HubSpot error:', hsRes.status, text)
+    // 3) POST into HubSpot’s Forms API
+    const hsRes = await fetch(
+      `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_ID}`,
+      {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(hubspotBody),
+      }
+    )
+
+    // 4) surface any HubSpot‐side error
+    if (!hsRes.ok) {
+      const detail = await hsRes.text()
+      return NextResponse.json(
+        { error: 'HubSpot API error', detail },
+        { status: 502 }
+      )
+    }
+
+    // 5) all good!
+    return NextResponse.json({ success: true })
+  } catch (err) {
+    // catch any parsing / network errors
+    const message = err instanceof Error ? err.message : String(err)
     return NextResponse.json(
-      { error: 'HubSpot rejected submission', detail: text },
-      { status: 502 }
+      { error: 'Internal server error', detail: message },
+      { status: 500 }
     )
   }
-
-  return NextResponse.json({ success: true })
 }
